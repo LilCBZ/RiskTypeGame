@@ -164,6 +164,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapMaker.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MouseInput.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="MapMaker.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="MouseInput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
