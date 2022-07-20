@@ -3,7 +3,12 @@
 
 bool MouseInput::lockLeftClick = false;
 
-bool MouseInput::rectangleLeftClick(const sf::IntRect &rect) const 
+MouseInput::MouseInput(const sf::RenderWindow &window)
+	: window(window)
+{
+}
+
+bool MouseInput::rectangleLeftClick(const sf::IntRect &rect) const
 {
 	if(lockLeftClick || !sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
@@ -19,8 +24,14 @@ bool MouseInput::rectangleLeftClick(const sf::FloatRect &rect) const
 	{
 		return false;
 	}
-	const float x = sf::Mouse::getPosition().x;
-	const float y = sf::Mouse::getPosition().y;
+	lockLeftClick = true;  // Since button is pressed.
+
+	const float x = window.mapPixelToCoords(sf::Mouse::getPosition(window)).x;
+	const float y = window.mapPixelToCoords(sf::Mouse::getPosition(window)).y;
+
+	std::cout << rect.left << ", " << rect.top << std::endl;
+	std::cout << x << ", " << y << std::endl << std::endl;
+
 	return rect.contains(x, y);
 }
 
@@ -34,16 +45,12 @@ bool MouseInput::textLeftClick(const sf::Text &text) const
 
 void MouseInput::update()
 {
-	lockLeftClickUpdate();
+	unlockLeftClick();
 }
 
-void MouseInput::lockLeftClickUpdate()
+void MouseInput::unlockLeftClick()
 {
-	if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-	{
-		lockLeftClick = true;
-	}
-	else
+	if(!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
 		lockLeftClick = false;
 	}

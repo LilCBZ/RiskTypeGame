@@ -4,7 +4,7 @@
 
 void Menu::draw(sf::RenderWindow &window)
 {
-	MouseInput mi;
+	MouseInput mi(window);
 
 	sf::Font font;
 	font.loadFromFile("Aller_Bd.ttf");
@@ -16,9 +16,11 @@ void Menu::draw(sf::RenderWindow &window)
 	centerText(text2, window, 20);
 	centerText(text3, window, -10);
 
+	drawTextRect(text1, window);
+
 	if(mi.textLeftClick(text1))
 	{
-		std::cout << "WWWWWWWWWWWWWWWWWWW";
+		std::cout << "OK";
 	}
 
 	window.draw(text1);

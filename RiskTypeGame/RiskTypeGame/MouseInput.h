@@ -4,6 +4,8 @@
 class MouseInput
 {
 public:
+	MouseInput(const sf::RenderWindow &window);
+
 	bool rectangleLeftClick(const sf::IntRect &rect) const;  // Single click detection on rectangle.
 	bool rectangleLeftClick(const sf::FloatRect &rect) const;  
 
@@ -12,7 +14,9 @@ public:
 	static void update();  // Updates all member variables.
 
 private:
-	static void lockLeftClickUpdate();  // Checks whether button is pressed and updates member accordingly.
+	static void unlockLeftClick();  // Checks whether button is pressed and updates member accordingly.
+
+	const sf::RenderWindow &window;
 
 	static bool lockLeftClick;  // For detection of mouse click (not hold).
 };
